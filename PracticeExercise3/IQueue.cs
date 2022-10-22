@@ -2,11 +2,11 @@
 
 namespace PracticeExercise3
 {
-    public interface IQueue<T>
-    {
+	public interface IQueue<T>
+	{
         void Enqueue(T item);
 
-        T Dequeue();
+		T Dequeue();
 
         T First { get; }
         T Last { get; }
@@ -14,5 +14,6 @@ namespace PracticeExercise3
         int Length { get; }
 
         bool IsEmpty { get; }
-    }
+	}
 }
+

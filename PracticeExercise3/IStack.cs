@@ -2,14 +2,17 @@
 
 namespace PracticeExercise3
 {
-    public interface IStack<T>
-    {
-        void Push(T item);
-        T Pop();
-        T Peek();
+	public interface IStack<T>
+	{
+		void Push(T item);
 
-        bool IsEmpty { get; }
+		T Pop();
 
-        int Length { get; }
-    }
+		T Peek();
+
+		bool IsEmpty { get; }
+
+		int Length { get; }
+	}
 }
+

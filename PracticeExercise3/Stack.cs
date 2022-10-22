@@ -2,13 +2,14 @@
 
 namespace PracticeExercise3
 {
-    public class Stack<T> : IStack<T>
-    {
+	public class Stack<T> : IStack<T>
+	{
         private LinkedList<T> linkedList;
-        public Stack() 
-        {
+
+		public Stack()
+		{
             linkedList = new LinkedList<T>();
-        }
+		}
 
         public bool IsEmpty => linkedList.Count == 0;
 
@@ -20,17 +21,20 @@ namespace PracticeExercise3
             {
                 throw new EmptyStackException();
             }
+
             return linkedList.Last.Value;
         }
 
         public T Pop()
         {
-            if (IsEmpty)
+            if( IsEmpty )
             {
                 throw new EmptyStackException();
             }
+
             var top = linkedList.Last.Value;
             linkedList.RemoveLast();
+
             return top;
         }
 
@@ -38,5 +42,21 @@ namespace PracticeExercise3
         {
             linkedList.AddLast(item);
         }
+
+        public override string ToString()
+        {
+            string result = "";
+
+            var currentNode = linkedList.Last;
+
+            while (currentNode != null)
+            {
+                result += currentNode.Value + "\n";
+                currentNode = currentNode.Previous;
+            }
+
+            return result;
+        }
     }
 }
+

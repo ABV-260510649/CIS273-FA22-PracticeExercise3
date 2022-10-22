@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PracticeExercise3
 {
-    public class Deque<T> : IDeque<T>
-    {
+	public class Deque<T> : IDeque<T>
+	{
         private LinkedList<T> linkedList;
-        public Deque()
-        {
+
+		public Deque()
+		{
             linkedList = new LinkedList<T>();
-        }
+		}
 
-        public T Front => IsEmpty ? throw new EmptyStackException() : linkedList.First.Value;
+        public T Front => IsEmpty ? throw new EmptyQueueException() : linkedList.First.Value;
 
-        public T Back => IsEmpty ? throw new EmptyStackException() : linkedList.Last.Value;
+        public T Back => IsEmpty ? throw new EmptyQueueException() : linkedList.Last.Value;
 
         public bool IsEmpty => linkedList.Count == 0;
 
@@ -32,8 +34,8 @@ namespace PracticeExercise3
         {
             if (IsEmpty)
             {
-                throw new EmptyStackException();
-            }
+                throw new EmptyQueueException();
+        }
             var back = linkedList.Last.Value;
             linkedList.RemoveLast();
             return back;
@@ -42,12 +44,33 @@ namespace PracticeExercise3
         public T RemoveFront()
         {
             if (IsEmpty)
-            {
-                throw new EmptyStackException();
+                {
+                throw new EmptyQueueException();
             }
             var front = linkedList.First.Value;
             linkedList.RemoveFirst();
             return front;
         }
+
+        public override string ToString()
+        {
+            string result = "<Back> ";
+
+            var currentNode = linkedList.Last;
+            while (currentNode != null)
+            {
+                result += currentNode.Value;
+                if (currentNode.Previous != null)
+                {
+                    result += " → ";
+                }
+                currentNode = currentNode.Previous;
+            }
+
+            result += " <Front>";
+
+            return result;
+        }
     }
 }
+
